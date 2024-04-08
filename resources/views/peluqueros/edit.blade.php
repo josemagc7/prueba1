@@ -1,5 +1,8 @@
 @extends('layouts.panel')
-
+@section('styles')
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+@endsection
 @section('content')
 
 
@@ -67,6 +70,20 @@
             <input type="text" name="password" class="form-control" value="">
             <p>Intruzca contraseña unicamente si deseas modificarla.</p>
           </div>
+          <div class="form-group">
+            <label for="tratamientos">Tratamientos</label>
+            <select name="tratamientos[]" id="tratamientos" class="form-control selectpicker" multiple data-style="btn-outline-secondary" title="Selecione tratamiento">
+                @foreach ($tratamientos as $tratamiento )
+                    <option value="{{$tratamiento->id}}"
+                        @if (isset($tratamientos_peluquero[$tratamiento->id])){
+                            selected
+                        }
+                        @endif>
+                        {{$tratamiento->tratamiento}} ({{$tratamiento->descripcion}})
+                    </option>
+                @endforeach
+            </select>
+          </div>
           {{-- <div class="form-group" style="display: none">
             <input type="text" name="rol" class="form-control" value="peluquero">
           </div> --}}
@@ -84,4 +101,12 @@
 </div>
 
 
+@endsection
+@section('scripts')
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script>
+
+
+</script>
 @endsection

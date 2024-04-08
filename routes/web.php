@@ -67,3 +67,17 @@ Route::middleware(['auth', 'peluquero'])->group(function () {
 
     //   Route::delete('/horario/{tratamiento}', [App\Http\Controllers\Peluquero\HorarioController::class, 'delete']);
 });
+
+// Route::get('/citas/create', [App\Http\Controllers\Cliente\CitasController::class, 'create']);
+// Route::post('/citas', [App\Http\Controllers\Cliente\CitasController::class, 'add']);
+Route::middleware('auth')->group(function () {
+
+    Route::get('/citas/create', [App\Http\Controllers\CitaController::class, 'create']);
+    Route::post('/citas', [App\Http\Controllers\CitaController::class, 'add']);
+
+
+    //json
+    Route::get('/tratamientos/{tratamiento}/peluqueros',[App\Http\Controllers\Api\TratamientoController::class, 'peluqueros']);
+    Route::get('/horarios/horas',[App\Http\Controllers\Api\HorariosController::class, 'horas']);
+});
+

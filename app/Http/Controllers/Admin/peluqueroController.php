@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use DB;
+use App\Models\tratamiento;
 use App\Http\Controllers\Controller;
 
 class peluqueroController extends Controller
@@ -22,7 +24,8 @@ class peluqueroController extends Controller
      */
     public function create()
     {
-        return view('peluqueros.create');
+        $tratamientos = tratamiento::all();
+        return view('peluqueros.create',compact('tratamientos'));
     }
     // Uj0aUqQf
     /**
@@ -30,22 +33,26 @@ class peluqueroController extends Controller
      */
     public function add(Request $request)
     {
+        // dd($request->all());
         $rules=[
             'name' => 'required|min:3',
             'email'=>'required|email',
             'dni'=>'nullable|min:9',
             'direccion'=>'nullable|min:4',
-            'telefono'=>'nullable|min:9',
+            'telefono'=>'nullable|min:9'
         ];
         $this->validate($request,$rules);
 
-        User::create(
+        $user = User::create(
             $request->only('name','email','dni','direccion','telefono')
             +[
                 'rol'=>'peluquero',
                 'password'=>bcrypt($request->input('password')),
             ]
         );
+
+        $user->tratamiento()->attach($request->input('tratamientos'));
+
         $mensaje='El/La peluquero/a '.$request['name'].' ha sido registrado/a correctamente.';
         return redirect('/peluqueros')->with(compact('mensaje'));
     }
@@ -63,10 +70,16 @@ class peluqueroController extends Controller
      */
     public function edit(string $id)
     {
-        // $peluquero=User::where('rol' , 'peluquero')->findOrFail($id)->get();
+        $tratamientos_peluquero=[];
+        $sql=DB::select('select * from tratamiento_user where user_id = ?', [$id]);
+        foreach ($sql as $key => $value) {
+            $tratamientos_peluquero[$value->tratamiento_id]=$value;
+        }
+
+        $tratamientos = tratamiento::all();
         $aux=User::where('rol' , 'peluquero')->where('id' , $id)->get();
         $peluquero=$aux[0];
-        return view('peluqueros.edit',compact('peluquero'));
+        return view('peluqueros.edit',compact('peluquero','tratamientos','tratamientos_peluquero'));
     }
 
     /**
@@ -96,6 +109,11 @@ class peluqueroController extends Controller
 
         $user->fill($data);
         $user->save();
+
+        $sql=DB::select('delete from tratamiento_user where user_id = ?', [$id]);
+        $user->tratamiento()->attach($request->input('tratamientos'));
+
+
         $mensaje='El/La peluquero/a '.$request['name'].' ha sido actualizado/a correctamente.';
         return redirect('/peluqueros')->with(compact('mensaje'));
     }

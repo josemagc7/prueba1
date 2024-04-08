@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'dni'=>fake()->randomNumber(8,8).strtoupper(Str::random(1)),
             'direccion'=>fake()->randomElement(['Aznalcollar','San Juan','Tomares','Bollullos','Pilas']),
             'telefono'=>'6'.fake()->randomNumber(8),
-            'rol'=>fake()->randomElement(['cliente']),
+            'rol'=>fake()->randomElement(['cliente','peluquero']),
 
             // php artisan db:seed para añadir
             // php artisan migrate:refresh --seed vaciar y meter

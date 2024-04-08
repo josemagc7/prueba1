@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="col text-right">
-                        <button type="submit" class="btn btn-sm btn-success">
+                        <button type="submit" id="btn_enviar" class="btn btn-sm btn-success">
                             Guardar cambios
                         </button>
                     </div>
@@ -21,12 +21,22 @@
                 </div>
             </div>
 
-
             @if (session('mensaje'))
-                <div class="card-body">
+                <div class="card-body" id="ocultar">
                     <ul>
                         <li style="color: green">{{ session('mensaje') }}</li>
                     </ul>
+                </div>
+            @endif
+
+            @if (session('errores_horario'))
+                <div class="card-body">
+                Cambios realizado pero:
+                <ul>
+                    @foreach ( session('errores_horario') as $error )
+                    <li style="color: red">{{ $error }}</li>
+                    @endforeach
+                </ul>
                 </div>
             @endif
 
@@ -42,45 +52,66 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($dias as $key => $dia)
+                        @if ($jornada==[]){
+                            <script>
+                                document.getElementById('btn_enviar').click();
+                                document.getElementById('ocultar').style.display = "none";;
+                            </script>
+                        }
+
+                        @endif
+                        @foreach ($jornada as $key => $diaJornada)
+
                             <tr>
-                                <th scope="col">{{ $dia }}</th>
+                                <th scope="col">{{ $dias[$key] }}</th>
 
                                 <td>
                                     <label class="custom-toggle">
-                                        <input type="checkbox" name='activo[]' value='{{$key}}'>
-                                        <span class="custom-toggle-slider rounded-circle" ></span>
+                                        <input type="checkbox" name='activo[]' value='{{ $key }}'
+                                            @if ($diaJornada['activo']) {
+                                            checked
+                                        } @endif>
+                                        <span class="custom-toggle-slider rounded-circle"></span>
                                     </label>
                                 </td>
 
                                 <td>
                                     <div class="row">
+
                                         <div class="col">
                                             <select name="tm_inicio[]" id="" class="form-control">
-                                                <option value="00:00" >Desde:</option>
-
+                                                <option value="00:00">Desde:</option>
                                                 @for ($i = 7; $i <= 15; $i++)
-                                                    <option value="{{ $i }}:00">{{ $i }}:00</option>
+                                                    <option value="{{ ($i<10?'0':''). $i }}:00"
+                                                        @if ($i . ':00' == $diaJornada['tm_inicio']) selected @endif>
+                                                        {{ $i }}:00</option>
                                                     @if ($i != 15)
-                                                        <option value="{{ $i }}:30">{{ $i }}:30
+                                                        <option value="{{($i<10?'0':''). $i }}:30"
+                                                            @if ($i . ':30' == $diaJornada['tm_inicio']) selected @endif>
+                                                            {{ $i }}:30
                                                         </option>
                                                     @endif
                                                 @endfor
                                             </select>
                                         </div>
+
                                         <div class="col">
                                             <select name="tm_fin[]" id="" class="form-control">
-                                                <option value="00:00" >Hasta:</option>
+                                                <option value="00:00">Hasta:</option>
                                                 @for ($i = 7; $i <= 15; $i++)
-                                                    <option value="{{ $i }}:00">{{ $i }}:00</option>
+                                                    <option value="{{($i<10?'0':''). $i }}:00"
+                                                        @if ($i . ':00' == $diaJornada['tm_fin']) selected @endif>
+                                                        {{ $i }}:00</option>
                                                     @if ($i != 15)
-                                                        <option value="{{ $i }}:30">{{ $i }}:30
+                                                        <option value="{{ ($i<10?'0':'').$i }}:30"
+                                                            @if ($i . ':30' == $diaJornada['tm_fin']) selected @endif>
+                                                            {{ $i }}:30
                                                         </option>
                                                     @endif
                                                 @endfor
                                             </select>
-
                                         </div>
+
                                     </div>
 
                                 </td>
@@ -89,12 +120,16 @@
                                     <div class="row">
                                         <div class="col">
                                             <select name="tt_inicio[]" id="" class="form-control">
-                                                <option value="00:00" >Desde:</option>
+                                                <option value="00:00">Desde:</option>
 
                                                 @for ($i = 15; $i <= 22; $i++)
-                                                    <option value="{{ $i }}:00">{{ $i }}:00</option>
+                                                    <option value="{{ $i }}:00"
+                                                        @if ($i . ':00' == $diaJornada['tt_inicio']) selected @endif>
+                                                        {{ $i }}:00</option>
                                                     @if ($i != 22)
-                                                        <option value="{{ $i }}:30">{{ $i }}:30
+                                                        <option value="{{ $i }}:30"
+                                                            @if ($i . ':30' == $diaJornada['tt_inicio']) selected @endif>
+                                                            {{ $i }}:30
                                                         </option>
                                                     @endif
                                                 @endfor
@@ -102,11 +137,15 @@
                                         </div>
                                         <div class="col">
                                             <select name="tt_fin[]" id="" class="form-control">
-                                                <option value="00:00" >Hasta:</option>
+                                                <option value="00:00">Hasta:</option>
                                                 @for ($i = 15; $i <= 22; $i++)
-                                                    <option value="{{ $i }}:00">{{ $i }}:00</option>
+                                                    <option value="{{ $i }}:00"
+                                                        @if ($i . ':00' == $diaJornada['tt_fin']) selected @endif>
+                                                        {{ $i }}:00</option>
                                                     @if ($i != 22)
-                                                        <option value="{{ $i }}:30">{{ $i }}:30
+                                                        <option value="{{ $i }}:30"
+                                                            @if ($i . ':30' == $diaJornada['tt_fin']) selected @endif>
+                                                            {{ $i }}:30
                                                         </option>
                                                     @endif
                                                 @endfor

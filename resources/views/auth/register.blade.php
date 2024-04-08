@@ -20,7 +20,7 @@
 
                 @endif
 
-          
+
           <form role="form" method="POST" action="{{ route('register') }}">
             @csrf
             <div class="form-group">
@@ -39,7 +39,30 @@
                 <input class="form-control" placeholder="Email" type="email" name="email" value="{{ old('email') }}" required>
               </div>
             </div>
-
+            <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-tag"></i></span>
+                  </div>
+                  <input type="text" name="dni" class="form-control" placeholder="DNI" value="{{ old('dni') }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-building"></i></span>
+                  </div>
+                  <input type="text" name="direccion" class="form-control" placeholder="Municipio" value="{{ old('direccion') }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                  </div>
+                  <input type="text" name="telefono" class="form-control" placeholder="Telefono" value="{{ old('telefono') }}">
+                </div>
+            </div>
             <div class="form-group">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
@@ -57,8 +80,8 @@
                 <input class="form-control" placeholder="Confirmar contraseña" type="password" name="password_confirmation" required autocomplete="new-password">
               </div>
             </div>
-           
-          
+
+
             <div class="text-center">
               <button type="submit" class="btn btn-primary mt-4">Crear cuenta</button>
             </div>

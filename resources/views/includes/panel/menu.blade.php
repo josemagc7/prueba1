@@ -46,7 +46,7 @@
     </li>
 @elseif (auth()->user()->rol == 'cliente')
 <li class="nav-item">
-    <a class="nav-link" href="{{ route('home')}}">
+    <a class="nav-link" href="{{ url('citas/create')}}">
         <i class="ni ni-calendar-grid-58 text-blue"></i> Resevar cita
     </a>
 </li>
