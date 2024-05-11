@@ -8,15 +8,15 @@
   <meta name="author" content="Creative Tim">
   <title>{{ config('app.name') }} | @yield('titulo')</title>
   <!-- Favicon -->
-  <link href=" {{ asset('img/brand/favicon.png') }}" rel="icon" type="image/png">
- 
+  <link href=" {{ secure_asset('img/brand/favicon.png') }}" rel="icon" type="image/png">
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href=" {{ asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
-  <link href=" {{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  <link href=" {{ secure_asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
+  <link href=" {{ secure_asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href=" {{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
+  <link type="text/css" href=" {{ secure_asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
 </head>
 
 <body class="bg-default">
@@ -25,7 +25,7 @@
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div class="container px-6">
         <a class="navbar-brand" href="{{url('/')}}">
-          <img src=" {{ asset('img/brand/logo_horizontal_3.png') }}" />
+          <img src=" {{ secure_asset('img/brand/logo_horizontal_3.png') }}" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="../index.html">
-                  <img src=" {{ asset('img/brand/blue.png') }}">
+                  <img src=" {{ secure_asset('img/brand/blue.png') }}">
                 </a>
               </div>
               <div class="col-6 collapse-close">
@@ -49,7 +49,7 @@
           </div>
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
-            
+
             <li class="nav-item">
               <a class="nav-link nav-link-icon" href="{{ route('register') }}">
                 <i class="ni ni-circle-08"></i>
@@ -62,7 +62,7 @@
                 <span class="nav-link-inner--text">Iniciar Sesión</span>
               </a>
             </li>
-            
+
           </ul>
         </div>
       </div>
@@ -112,10 +112,10 @@
   </footer>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src=" {{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
-  <script src=" {{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src=" {{ secure_asset('vendor/jquery/dist/jquery.min.js') }}"></script>
+  <script src=" {{ secure_asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <!-- Argon JS -->
-  <script src=" {{ asset('js/argon.js?v=1.0.0') }}"></script>
+  <script src=" {{ secure_asset('js/argon.js?v=1.0.0') }}"></script>
 </body>
 
 </html>
