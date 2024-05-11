@@ -123,12 +123,29 @@ class peluqueroController extends Controller
      */
     public function delete(string $id)
     {
-        $aux=User::where('rol' , 'peluquero')->where('id' , $id)->get();
-        $user=$aux[0];
-        $inf=$user->name;
-        $user->delete();
 
-        $mensaje='El/La peluquero/a '.$inf.' ha sido eliminado/a correctamente.';
+
+        $user=User::where('rol' , 'peluquero')->where('id' , $id)->get()[0];
+
+        if ($user['activo']) {
+            $activo=0;
+            $mensaje='El/La peluquero/a '.$user->name.' ha sido desactivado/a correctamente.';
+
+        } else {
+            $activo=1;
+            $mensaje='El/La peluquero/a '.$user->name.' ha sido activado/a correctamente.';
+
+        }
+
+        $user->activo=$activo;
+        $user->save();
+
+        // $peluquero=User::where('rol' , 'peluquero')->where('id' , $id)->get()[0];
+        // // $user=$aux[0];
+        // $user->peluquero ;
+        // $user->delete();
+
+        // $mensaje='El/La peluquero/a '.$inf.' ha sido eliminado/a correctamente.';
         return redirect('/peluqueros')->with(compact('mensaje'));
 
     }

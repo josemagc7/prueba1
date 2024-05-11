@@ -23,7 +23,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
+// Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     //Tratamiento
@@ -50,7 +52,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/clientes/{cliente}/edit', [App\Http\Controllers\Admin\clienteController::class, 'edit']);
     Route::post('/clientes', [App\Http\Controllers\Admin\clienteController::class, 'add']);
     Route::put('/clientes/{cliente}', [App\Http\Controllers\Admin\clienteController::class, 'update']);
-    Route::delete('/clientes/{cliente}', [App\Http\Controllers\Admin\clienteController::class, 'delete']);
+    Route::put('/clientes/{cliente}', [App\Http\Controllers\Admin\clienteController::class, 'delete']);
 });
 
 Route::middleware(['auth', 'peluquero'])->group(function () {
@@ -62,6 +64,10 @@ Route::middleware(['auth', 'peluquero'])->group(function () {
       Route::get('/horario', [App\Http\Controllers\Peluquero\HorarioController::class, 'edit']);
 
       Route::post('/horario', [App\Http\Controllers\Peluquero\HorarioController::class, 'add']);
+      Route::get('/citasPeluquero', [App\Http\Controllers\CitaController::class, 'citasPeluqueroHOY']);
+      Route::get('/citaCompletada', [App\Http\Controllers\CitaController::class, 'updateCita']);
+
+
 
     //   Route::put('/horario/{tratamiento}', [App\Http\Controllers\Peluquero\HorarioController::class, 'update']);
 
@@ -74,10 +80,21 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/citas/create', [App\Http\Controllers\CitaController::class, 'create']);
     Route::post('/citas', [App\Http\Controllers\CitaController::class, 'add']);
-
+    Route::get('/vercitas', [App\Http\Controllers\CitaController::class, 'vercitas']);
+    Route::delete('/citas/{id}', [App\Http\Controllers\CitaController::class, 'delete']);
 
     //json
     Route::get('/tratamientos/{tratamiento}/peluqueros',[App\Http\Controllers\Api\TratamientoController::class, 'peluqueros']);
     Route::get('/horarios/horas',[App\Http\Controllers\Api\HorariosController::class, 'horas']);
+    // Route::get('/horarios/horasDeshabilitadas',[App\Http\Controllers\Api\HorariosController::class, 'horasDeshabilitadas']);
+
+    Route::get('/miPerfil', [App\Http\Controllers\MiPerfilController::class, 'index']);
+    Route::get('/miPerfil/ajustes', [App\Http\Controllers\MiPerfilController::class, 'ajustes']);
+    Route::get('/miPerfil/create', [App\Http\Controllers\MiPerfilController::class, 'create']);
+    Route::get('/miPerfil/{cliente}/edit', [App\Http\Controllers\MiPerfilController::class, 'edit']);
+    Route::post('/miPerfil', [App\Http\Controllers\MiPerfilController::class, 'add']);
+    Route::put('/miPerfil/{cliente}', [App\Http\Controllers\MiPerfilController::class, 'update']);
+    Route::delete('/miPerfil/{cliente}', [App\Http\Controllers\MiPerfilController::class, 'delete']);
+
 });
 

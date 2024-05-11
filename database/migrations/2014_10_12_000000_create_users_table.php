@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('telefono')->nullable();
 
             $table->string('rol'); //admin, cliente, peluquero
-
+            $table->string('activo')->default(1);
 
             $table->rememberToken();
             $table->timestamps();

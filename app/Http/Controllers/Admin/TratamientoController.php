@@ -35,6 +35,7 @@ class TratamientoController extends Controller
         [
             'tratamiento' => 'required|min:4',
             'precio' => 'required',
+            'tiempo' => 'required',
             'descripcion' => 'required',
         ];
 
@@ -43,6 +44,7 @@ class TratamientoController extends Controller
     	$tratamiento = new tratamiento();
     	$tratamiento->tratamiento = $request->input('tratamiento');
     	$tratamiento->precio = $request->input('precio');
+        $tratamiento->tiempo = $request->input('tiempo');
     	$tratamiento->descripcion = $request->input('descripcion');
     	$tratamiento->save();
 
@@ -66,6 +68,7 @@ class TratamientoController extends Controller
         [
             'tratamiento' => 'required|min:4',
             'precio' => 'required',
+            'tiempo' => 'required',
             'descripcion' => 'required',
         ];
 
@@ -73,6 +76,7 @@ class TratamientoController extends Controller
 
         $tratamiento->tratamiento = $request->input('tratamiento');
         $tratamiento->precio = $request->input('precio');
+        $tratamiento->tiempo = $request->input('tiempo');
         $tratamiento->descripcion = $request->input('descripcion');
         $tratamiento->save(); //update
         $mensaje = 'Tratamiento '.$tratamiento->tratamiento.' editado correctamente';
@@ -80,9 +84,19 @@ class TratamientoController extends Controller
     }
 
     public function delete(tratamiento $tratamiento){
-        $tratamientoEliminado=$tratamiento->tratamiento;
-        $tratamiento->delete();
-        $mensaje = 'Tratamiento '.$tratamientoEliminado.' eliminado correctamente';
+        // dd($tratamiento['activo']);
+
+        if ($tratamiento['activo']) {
+            $activo=0;
+            $mensaje='El/La peluquero/a '.$tratamiento->name.' ha sido desactivado/a correctamente.';
+
+        } else {
+            $activo=1;
+            $mensaje='El/La peluquero/a '.$tratamiento->name.' ha sido activado/a correctamente.';
+
+        }
+        $tratamiento->activo=$activo;
+        $tratamiento->save();
         return redirect('/tratamientos')->with(compact('mensaje'));
 
     }

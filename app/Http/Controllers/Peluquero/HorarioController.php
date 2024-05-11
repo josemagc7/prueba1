@@ -66,11 +66,11 @@ class HorarioController extends Controller
             if (in_array($i, $activo)) {
 
                 if ($tm_inicio[$i] > $tm_fin[$i] ) {
-                    $errores_horario[]="Las horas del turno mañana del dia {$this->dias[$i]} son incosistente.";
+                    $errores_horario[]="Las horas del turno mañana del dia {$this->dias[$i]} son incoherentes.";
                 }
 
                 if ($tt_inicio[$i] > $tt_fin[$i]) {
-                    $errores_horario[]="Las horas del turno tarde del dia {$this->dias[$i]} son incosistente.";
+                    $errores_horario[]="Las horas del turno tarde del dia {$this->dias[$i]} son incoherentes.";
                 }
                 jornadaLaboral::updateOrCreate(
                     [

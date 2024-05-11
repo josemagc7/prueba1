@@ -14,8 +14,8 @@
                 </div>
 
                 <div class="col text-right">
-                    <a href="{{ url('clientes') }}" class="btn btn-sm btn-default">
-                        Volver
+                    <a href="{{ url('vercitas') }}" class="btn btn-sm btn-default">
+                        Ir a mis citas
                     </a>
                 </div>
 
@@ -26,17 +26,25 @@
             <!-- Crear nuevo cleinte -->
             <div class="card-body">
 
-                <!-- MOSTRAMOS ERRORES PROCEDENTE DEL SERVER -->
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li style="color: red">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
+                <div class="card-body" id="info">
+                    @if (session('mensaje'))
+                    <div class="card-body" id="ocultar">
+                        <ul>
+                            <li style="color: green">{{ session('mensaje') }}</li>
+                        </ul>
+                    </div>
+                    @endif
+                    <!-- MOSTRAMOS ERRORES PROCEDENTE DEL SERVER -->
+                    @if ($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li style="color: red">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
 
-
-                <form action="{{ url('clientes') }}" method="post">
+                <form action="{{ url('citas') }}" method="post">
                     @csrf
 
                     <div class="form-group">
@@ -44,15 +52,15 @@
                         <select name="tratamiento_id" id="tratamiento" class="form-control" required>
                             <option value="" selected disabled>Selecione un tratamiento</option>
                             @foreach ($tratamientos as $tratamiento)
-                                <option value="{{ $tratamiento->id }}">{{ $tratamiento->tratamiento }}</option>
+                                <option value="{{ "{$tratamiento->id}-{$tratamiento->tiempo}" }}">
+                                    {{ "$tratamiento->tratamiento ($tratamiento->tiempo Minutos)"}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for='peluquero'>Peluquero</label>
+                        <label for='peluquero' required>Peluquero</label>
                         <select name="peluquero_id" id="peluquero" class="form-control">
-
                         </select>
                     </div>
 
@@ -62,13 +70,29 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                             </div>
-                            <input type="text" name="fecha" class="form-control datepicker" value="{{date('Y-m-d')}}" data-date-format="yyyy-mm-dd" data-date-start-date="{{date('Y-m-d')}}" data-date-end-date="+21d">
+                            <input type="text" id="fecha" name="fecha_cita" class="form-control datepicker"
+                                value="{{ date('Y-m-d', strtotime(date(now()). ' +1 days')) }}" data-date-format="yyyy-mm-dd"
+                                data-date-start-date="+1d"  data-date-end-date="+21d" required>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="div_horas" style="display: none">
                         <label for='hora'>Hora</label>
-                        <input type="text" name="direccion" class="form-control">
+                        <div class="card-body pt-0 pb-0 pr-0" id="horas">
+
+                        </div>
+                    </div>
+                    {{-- <div class="form-group">
+                        <label for='telefono'>Teléfono
+                        </label>
+                        <input type="text" name="telefono" class="form-control" placeholder="Ej: 696545884"
+                            value="{{ old('telefono') }}" required>
+                    </div> --}}
+                    <div class="form-group">
+                        <label for='descripcion'>Teléfono</label>
+                        <input type="text" name="descripcion" id="descripcion" class="form-control"
+                            placeholder="Deje su telefono de contacto, Gracias" value="{{ old('descripcion') }}" maxlength="9" required>
+                        </input>
                     </div>
 
                     {{-- <div class="form-group">
@@ -84,10 +108,10 @@
 
 
                     <!--      <div class="form-group">
-                        <label for='descripcion'>Descripcion</label>
-                        <input type="" name=""> type="text" name="descripcion" class="form-control">
-                      </div> -->
-                    <button type="submit" class="btn btn-sm btn-primary">Añadir cliente</button>
+                                        <label for='descripcion'>Descripcion</label>
+                                        <input type="" name=""> type="text" name="descripcion" class="form-control">
+                                      </div> -->
+                    <button type="submit" class="btn btn-sm btn-primary">Coger cita</button>
                 </form>
             </div>
         </div>
@@ -98,6 +122,14 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('vendor\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js') }}"></script> --}}
+    <script src="{{ asset('vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js') }}"></script>
+
+
+
+
     <script src="{{ asset('/js/citas/create.js') }}"></script>
 @endsection

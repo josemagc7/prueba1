@@ -11,6 +11,6 @@ class TratamientoController extends Controller
     public function peluqueros(tratamiento $tratamiento)
     {
         // dd($tratamiento->users);
-       return $tratamiento->users()->get(['users.id','users.name']);
+       return $tratamiento->users()->where('activo',1)->get(['users.id','users.name']);
     }
 }

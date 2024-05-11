@@ -7,14 +7,14 @@
             <div class="row align-items-center">
 
                 <div class="col">
-                    <h3 class="mb-0">Peluqueros</h3>
+                    <h3 class="mb-0">Mi Perfil</h3>
                 </div>
 
-                <div class="col text-right">
-                    <a href="{{ url('peluqueros/create') }}" class="btn btn-sm btn-success">
-                        Nuevo peluquero
+                {{-- <div class="col text-right">
+                    <a href="{{ url('clientes/create') }}" class="btn btn-sm btn-success">
+                        Nuevo cliente
                     </a>
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -29,7 +29,7 @@
         @endif
 
         <div class="table-responsive">
-            <!-- Peluquero -->
+            <!-- cliente -->
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
@@ -40,34 +40,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($peluqueros as $peluquero)
+                    @foreach ($clientes as $cliente)
                         <tr>
                             <th scope="row">
-                                {{ $peluquero->name }}
+                                {{ $cliente->name }}
                             </th>
                             <td>
-                                {{ $peluquero->email }}
+                                {{ $cliente->email }}
                             </td>
                             <td>
-                                {{ $peluquero->telefono }}
+                               {{ $cliente->telefono }}
                             </td>
                             <td>
 
-                                <form action="{{ url('/peluqueros/' . $peluquero->id) }}" method="POST">
+                                <form action="{{ url('/miPerfil/' . $cliente->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-
-                                    <a href="{{ url('/peluqueros/' . $peluquero->id . '/edit') }}"
+                                    <a href="{{ url('/miPerfil/' . $cliente->id . '/edit') }}"
                                         class="btn btn-sm btn-primary">Editar</a>
-                                    @if ($peluquero->activo == 1)
-                                        <button class="btn btn-sm btn-danger" type="submit"
-                                            onclick="return confirm('¿Estas seguro de desactivar al peluquero?')">Desactivar</button>
-                                    @else
-                                        <button class="btn btn-sm btn-success" type="submit"
-                                            onclick="return confirm('¿Estas seguro de activar al peluquero?')">Activar</button>
+                                    @if (auth()->user()->rol == 'cliente')
+                                    <button class="btn btn-sm btn-danger" type="submit"
+                                        onclick="return confirm('¿Estas seguro de desactivar la cuenta?')">Desactivar</button>
                                     @endif
                                 </form>
-
                             </td>
                         </tr>
                     @endforeach
@@ -76,8 +71,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="card-body">
-            {{ $peluqueros->links('pagination::bootstrap-5') }}
-        </div>
+        {{-- <div class="card-body">
+            {{ $clientes->links('pagination::bootstrap-5') }}
+        </div> --}}
     </div>
 @endsection

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -36,4 +38,26 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function attemptLogin(Request $request)
+    {
+
+        // Intentar autenticar al usuario
+        $result = $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        );
+        // dd(auth()->user()->activo);
+        // Si las credenciales son válidas pero el usuario no está activo, no permitir el inicio de sesión
+        if ($result && !auth()->user()->activo) {
+            $this->guard()->logout();
+            throw ValidationException::withMessages([
+
+                $this->username() => [trans('Usuario Desactivado.')],
+            ]);
+        }
+
+        return $result;
+    }
+
+
 }

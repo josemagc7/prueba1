@@ -14,7 +14,7 @@ class clienteController extends Controller
      */
     public function index()
     {
-        $clientes= User::where('rol' , 'cliente')->paginate(10);
+        $clientes= User::where('rol' , 'cliente')/*->orderBy('activo', 'desc')*/->paginate(10);
         return view('clientes.index', compact('clientes'));
     }
 
@@ -105,12 +105,21 @@ class clienteController extends Controller
      */
     public function delete(string $id)
     {
-        $aux=User::where('rol' , 'cliente')->where('id' , $id)->get();
-        $user=$aux[0];
-        $inf=$user->name;
-        $user->delete();
 
-        $mensaje='El/La cliente/a '.$inf.' ha sido eliminado/a correctamente.';
+        $user=User::where('rol' , 'cliente')->where('id' , $id)->get()[0];
+        if ($user['activo']) {
+            $activo=0;
+            $mensaje='El/La cliente/a '.$user->name.' ha sido desactivado/a correctamente.';
+
+        } else {
+            $activo=1;
+            $mensaje='El/La cliente/a '.$user->name.' ha sido activado/a correctamente.';
+
+        }
+
+        $user->activo=$activo;
+        $user->save();
+
         return redirect('/clientes')->with(compact('mensaje'));
     }
 }

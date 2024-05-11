@@ -49,17 +49,22 @@
                                 {{ $cliente->email }}
                             </td>
                             <td>
-                               {{ $cliente->telefono }}
+                                {{ $cliente->telefono }}
                             </td>
                             <td>
 
                                 <form action="{{ url('/clientes/' . $cliente->id) }}" method="POST">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('PUT')
                                     <a href="{{ url('/clientes/' . $cliente->id . '/edit') }}"
                                         class="btn btn-sm btn-primary">Editar</a>
-                                    <button class="btn btn-sm btn-danger" type="submit"
-                                        onclick="return confirm('¿Estas seguro de eliminar al cliente?')">Eliminar</button>
+                                    @if ($cliente->activo == 1)
+                                        <button class="btn btn-sm btn-danger" type="submit"
+                                            onclick="return confirm('¿Estas seguro de desactivar al cliente?')">Desactivar</button>
+                                    @else
+                                        <button class="btn btn-sm btn-success" type="submit"
+                                            onclick="return confirm('¿Estas seguro de activar al cliente?')">Activar</button>
+                                    @endif
                                 </form>
                             </td>
                         </tr>

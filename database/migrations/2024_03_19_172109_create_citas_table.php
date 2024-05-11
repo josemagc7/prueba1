@@ -14,7 +14,20 @@ return new class extends Migration
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
 
+            //tratamiento
+            $table->unsignedInteger('tratamiento_id');
+            //peluquero
+            $table->unsignedInteger('peluquero_id');
+            //cliente
+            $table->unsignedInteger('cliente_id');
 
+            $table->string('fecha_cita');
+            $table->string('hora_cita');
+            $table->string('descripcion')->nullable();
+            $table->boolean('asistencia')->default(0);
+            $table->string('tratamiento');
+            $table->string('precio');
+            $table->string('tiempo');
 
             $table->timestamps();
         });

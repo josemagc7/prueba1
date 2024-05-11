@@ -1,7 +1,7 @@
 @extends('layouts.panel')
 
 @section('content')
-    
+
 
 
 <div class="card shadow">
@@ -49,6 +49,19 @@
           </div>
 
           <div class="form-group">
+            <label for="tiempo">Tiempo del tratamiento</label>
+            <select class="form-control" name="tiempo" required>
+              <option value =''disabled selected>Seleccione una opción</option>
+              <option value ='15'>15 Minutos</option>
+              <option value ='30'>30 Minutos</option>
+              <option value ='45'>30 Minutos</option>
+              <option value ='60'>1 Hora</option>
+              <option value ='75'>1 Hora y 15 Minutos</option>
+              <option value ='90'>1 Hora y 30 Minutos</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="descripcion">Descripción</label>
             <select class="form-control" name="descripcion" required>
               <option value =''disabled selected>Seleccione una opción</option>
@@ -61,12 +74,12 @@
             <label for='descripcion'>Descripcion</label>
             <input type="" name=""> type="text" name="descripcion" class="form-control">
           </div> -->
-         <button type="submit" class="btn btn-sm btn-primary">Editar tratamiento</button> 
+         <button type="submit" class="btn btn-sm btn-primary">Editar tratamiento</button>
        </form>
     </div>
   </div>
 
 </div>
-  
-    
+
+
 @endsection

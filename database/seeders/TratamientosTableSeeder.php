@@ -24,6 +24,7 @@ class TratamientosTableSeeder extends Seeder
             tratamiento::create([
                 'tratamiento'=> $value,
                 'precio'=>fake()->randomElement(['10.00','20.00','12.00','16,30']),
+                'tiempo'=>fake()->randomElement(['15','30','45','60','75','90']),
                 'descripcion'=>fake()->randomElement(['Mujer','Hombre/Mujer','Hombre'])
             ]);
 

@@ -17,6 +17,10 @@
   <!-- Argon CSS -->
   <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
 
+  {{-- <script src="{{ asset('vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script> --}}
+  <link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+
+
   @yield('styles')
 </head>
 
@@ -93,9 +97,13 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home')}}">PANEL ADMINISTRATIVO</a>
+        @if (auth()->user()->rol == 'admin')
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home')}}">PANEL DE ADMINISTRACIÓN</a>
+        @else
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home')}}">GESTOR DE CITAS DE {{auth()->user()->name}}</a>
+        @endif
         <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        {{-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
@@ -104,7 +112,7 @@
               <input class="form-control" placeholder="Search" type="text">
             </div>
           </div>
-        </form>
+        </form> --}}
         <!-- User -->
       <!-- @inlcude('inlcudes.panel.navbar') -->
       <ul class="navbar-nav align-items-center d-none d-md-flex">

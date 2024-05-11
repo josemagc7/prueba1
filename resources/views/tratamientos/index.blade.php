@@ -35,6 +35,7 @@
                     <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
+                        <th scope="col">Tiempo</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Opciones</th>
                     </tr>
@@ -49,6 +50,9 @@
                                 {{ $tratamiento->precio }} €
                             </td>
                             <td>
+                                {{ $tratamiento->tiempo }} Minutos
+                            </td>
+                            <td>
                                 Tratamiento para {{ $tratamiento->descripcion }}
                             </td>
                             <td>
@@ -58,8 +62,15 @@
                                     @method('DELETE')
                                     <a href="{{ url('/tratamientos/' . $tratamiento->id . '/edit') }}"
                                         class="btn btn-sm btn-primary">Editar</a>
-                                    <button class="btn btn-sm btn-danger" type="submit"
-                                        onclick="return confirm('¿Estas seguro de eliminar el tratamiento?')">Eliminar</button>
+
+                                    @if ($tratamiento->activo == 1)
+                                        <button class="btn btn-sm btn-danger" type="submit"
+                                            onclick="return confirm('¿Estas seguro de desactivar al tratamiento?')">Desactivar</button>
+                                    @else
+                                        <button class="btn btn-sm btn-success" type="submit"
+                                            onclick="return confirm('¿Estas seguro de activar al tratamiento?')">Activar</button>
+                                    @endif
+
                                 </form>
                             </td>
                         </tr>
