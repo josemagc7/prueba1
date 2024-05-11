@@ -22,7 +22,7 @@ class CitaController extends Controller
         public function add(Request $request)
         {
             $rules=[
-                'tratamiento_id'=>'exists:tratamientos,id',
+                // 'tratamiento_id'=>'exists:tratamientos,id',
                 'peluquero_id'=>'exists:users,id',
                 // 'fecha_cita',
                 'hora_cita'=>'required',
