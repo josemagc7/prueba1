@@ -29,7 +29,7 @@
     </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('cajaAdmin') }}">
+        <a class="nav-link" href="{{ url('cajaAdmin') }}" @disabled(true)>
             <i class="ni ni-money-coins text-success"></i> Caja
         </a>
     </li>
@@ -45,7 +45,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('clientes') }}">
+        <a class="nav-link" href="{{ url('clientes') }}" @disabled(true)>
             <i class="ni ni-money-coins text-success"></i>Caja
         </a>
     </li>
@@ -83,12 +83,12 @@
 <!-- Navigation -->
 <ul class="navbar-nav mb-md-3">
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="#" @disabled(true)>
       <i class="ni ni-sound-wave text-yellow"></i>Freceuncias de citas
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="#" @disabled(true)>
       <i class="ni ni-spaceship text-orange"></i>Peluqeros/as más activos
     </a>
   </li>
