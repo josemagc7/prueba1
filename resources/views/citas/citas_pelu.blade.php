@@ -100,5 +100,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ secure_asset('/js/citas/citas_pelu.js') }}"></script>
+    <script src="{{ asset('/js/citas/citas_pelu.js') }}"></script>
 @endsection

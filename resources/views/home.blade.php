@@ -10,31 +10,31 @@
                 <div id="slideshow" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img/theme/img1.jpg') }}" alt="Primera imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img/theme/img1.jpg') }}" alt="Primera imagen">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img\theme\img2.jpg') }}" alt="Segunda imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img\theme\img2.jpg') }}" alt="Segunda imagen">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img\theme\img3.jpg') }}" alt="Tercera imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img\theme\img3.jpg') }}" alt="Tercera imagen">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img\theme\img4.jpg') }}" alt="Cuarta imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img\theme\img4.jpg') }}" alt="Cuarta imagen">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img\theme\img5.jpg') }}" alt="Quinta imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img\theme\img5.jpg') }}" alt="Quinta imagen">
                         </div>
                         <div class="carousel-item ">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img/theme/img6.jpg') }}" alt="Sexta imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img/theme/img6.jpg') }}" alt="Sexta imagen">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img\theme\img7.jpg') }}" alt="Septima imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img\theme\img7.jpg') }}" alt="Septima imagen">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img\theme\img8.jpg') }}" alt="Octava imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img\theme\img8.jpg') }}" alt="Octava imagen">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100 img-fluid" src="{{ secure_asset('img\theme\img9.jpg') }}" alt="Novena imagen">
+                            <img class="d-block w-100 img-fluid" src="{{ asset('img\theme\img9.jpg') }}" alt="Novena imagen">
                         </div>
 
                     </div>

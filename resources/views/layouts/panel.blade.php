@@ -8,17 +8,17 @@
   <meta name="author" content="Creative Tim">
   <title>{{ config('app.name') }} | @yield('titulo', 'Panel')</title>
   <!-- Favicon -->
-  <link href="{{ secure_asset('img/brand/favicon.png') }}" rel="icon" type="image/png">
+  <link href="{{ asset('img/brand/favicon.png') }}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href="{{ secure_asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
-  <link href="{{ secure_asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="{{ secure_asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
+  <link type="text/css" href="{{ asset('css/argon.css?v=1.0.0') }}" rel="stylesheet">
 
-  {{-- <script src="{{ secure_asset('vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script> --}}
-  <link rel="stylesheet" href="{{ secure_asset('vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+  {{-- <script src="{{ asset('vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script> --}}
+  <link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
 
 
   @yield('styles')
@@ -35,7 +35,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="#">
-        <img src="{{ secure_asset('img/brand/logo_horizontal.png') }}" class="navbar-brand-img" alt="...">
+        <img src="{{ asset('img/brand/logo_horizontal.png') }}" class="navbar-brand-img" alt="...">
       </a>
 
       <!-- User -->
@@ -56,7 +56,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="{{ secure_asset('img/theme/usuario2.png') }}">
+                <img alt="Image placeholder" src="{{ asset('img/theme/usuario2.png') }}">
               </span>
             </div>
           </a>
@@ -75,7 +75,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="./index.html">
-                <img src="{{ secure_asset('img/brand/logo_horizontal.png') }}">
+                <img src="{{ asset('img/brand/logo_horizontal.png') }}">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -120,7 +120,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{ secure_asset('img/theme/usuario2.png') }}">
+                  <img alt="Image placeholder" src="{{ asset('img/theme/usuario2.png') }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name}}</span>
@@ -151,15 +151,15 @@
   <!-- Argon Scripts -->
   <!-- Core -->
 
-  <script src="{{ secure_asset('vendor/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ secure_asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <!-- Optional JS -->
-  <script src="{{ secure_asset('vendor/chart.js/dist/Chart.min.js') }}"></script>
-  <script src="{{ secure_asset('vendor/chart.js/dist/Chart.extension.js') }}"></script>
+  <script src="{{ asset('vendor/chart.js/dist/Chart.min.js') }}"></script>
+  <script src="{{ asset('vendor/chart.js/dist/Chart.extension.js') }}"></script>
   @yield('scripts')
-  {{-- <script src="{{ secure_asset('vendor\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js')}}"></script> --}}
+  {{-- <script src="{{ asset('vendor\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js')}}"></script> --}}
   <!-- Argon JS -->
-  <script src="{{ secure_asset('js/argon.js?v=1.0.0') }}"></script>
+  <script src="{{ asset('js/argon.js?v=1.0.0') }}"></script>
 
 
 </body>
