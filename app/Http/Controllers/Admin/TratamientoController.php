@@ -88,11 +88,11 @@ class TratamientoController extends Controller
 
         if ($tratamiento['activo']) {
             $activo=0;
-            $mensaje='El/La peluquero/a '.$tratamiento->name.' ha sido desactivado/a correctamente.';
+            $mensaje='El tratamiento '.$tratamiento->name.' ha sido desactivado/a correctamente.';
 
         } else {
             $activo=1;
-            $mensaje='El/La peluquero/a '.$tratamiento->name.' ha sido activado/a correctamente.';
+            $mensaje='El tratamiento '.$tratamiento->name.' ha sido activado/a correctamente.';
 
         }
         $tratamiento->activo=$activo;
