@@ -100,7 +100,10 @@ class CitaController extends Controller
             }
             $data=[];
             $citas=cita::where('peluquero_id',auth()->id())->where('fecha_cita',$fecha)->get();
-            dd($citas);
+
+            if ($citas->isEmpty()) {
+               dd('hola');
+            } else {
             foreach ($citas as $key => $value) {
                 $tratamientos=tratamiento::where('id',$value['tratamiento_id'])->get();
                 $users=User::where('id',$value['cliente_id'])->get();
@@ -128,6 +131,7 @@ class CitaController extends Controller
                 ];
                 return $datos;
             }
+        }
         }
 
         public function updateCita()
