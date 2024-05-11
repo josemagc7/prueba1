@@ -99,6 +99,7 @@ class CitaController extends Controller
                 $fecha=date('Y-m-d');
             }
             $data=[];
+            dd($fecha);
             $citas=cita::where('peluquero_id',auth()->id())->where('fecha_cita',$fecha)->get();
             foreach ($citas as $key => $value) {
                 $tratamientos=tratamiento::where('id',$value['tratamiento_id'])->get();
