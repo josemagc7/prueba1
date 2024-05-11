@@ -1,7 +1,7 @@
 @extends('layouts.form')
 
 @section('titulo', 'Cambiar Contraseña')
-@section('subtitulo', 'La contraseña será enviada a tu correo electronico.')
+@section('subtitulo', 'La contraseña podrá ser modificada a traves de tu correo electronico.')
 
 
 @section('content')
