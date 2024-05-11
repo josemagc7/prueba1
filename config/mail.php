@@ -32,18 +32,28 @@ return [
     |            "postmark", "log", "array", "failover", "roundrobin"
     |
     */
+    // MAIL_MAILER=smtp
+    // MAIL_HOST=smtp.gmail.com
+    // MAIL_PORT=587
+    // MAIL_USERNAME=citas.sotero.hernandez@gmail.com
+    // MAIL_PASSWORD==unW1J8fwlgto0t-[7vO
+    // MAIL_ENCRYPTION=tls
+    // MAIL_FROM_ADDRESS=jgarciacortes1999@gmail.com
+    // MAIL_SMTP_SSL_VERIFY = false
+    // MAIL_FROM_NAME="${APP_NAME}"
 
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('MAIL_USERNAME' , 'citas.sotero.hernandez@gmail.com'),
+            'password' => env('MAIL_PASSWORD' , 'unW1J8fwlgto0t-[7vO'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'verify_peer' => false
         ],
 
         'ses' => [
