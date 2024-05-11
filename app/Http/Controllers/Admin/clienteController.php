@@ -14,7 +14,7 @@ class clienteController extends Controller
      */
     public function index()
     {
-        $clientes= User::where('rol' , 'cliente')->orderBy('activo', 'desc')->paginate(10);
+        $clientes= User::where('rol' , 'cliente')->orderBy('id', 'asc')->paginate(10);
         return view('clientes.index', compact('clientes'));
     }
 

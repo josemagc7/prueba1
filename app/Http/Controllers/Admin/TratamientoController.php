@@ -18,7 +18,7 @@ class TratamientoController extends Controller
     //INYECTAMOS VISTA PRINCIPAL DE TRATAMIENTOS
     public function index()
     {
-    	$tratamientos = tratamiento::orderBy('activo', 'desc')->paginate(10);
+    	$tratamientos = tratamiento::orderBy('id', 'asc')->paginate(10);
     	return view('tratamientos.index', compact('tratamientos'));
     }
 

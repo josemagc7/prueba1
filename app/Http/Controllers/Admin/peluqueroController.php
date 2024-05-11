@@ -15,7 +15,7 @@ class peluqueroController extends Controller
      */
     public function index()
     {
-        $peluqueros= User::where('rol' , 'peluquero')->orderBy('activo', 'desc')->paginate(10);
+        $peluqueros= User::where('rol' , 'peluquero')->orderBy('id', 'asc')->paginate(10);
         return view('peluqueros.index', compact('peluqueros'));
     }
 
