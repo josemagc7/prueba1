@@ -44,7 +44,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-tag"></i></span>
                   </div>
-                  <input type="text" name="dni" class="form-control" placeholder="DNI" value="{{ old('dni') }}">
+                  <input type="text" name="dni" class="form-control" placeholder="DNI" value="{{ old('dni') }}" required minlength="9" maxlength="9">
                 </div>
             </div>
             <div class="form-group">
@@ -52,7 +52,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-building"></i></span>
                   </div>
-                  <input type="text" name="direccion" class="form-control" placeholder="Municipio" value="{{ old('direccion') }}">
+                  <input type="text" name="direccion" class="form-control" placeholder="Municipio" value="{{ old('direccion') }}" required>
                 </div>
             </div>
             <div class="form-group">
@@ -60,7 +60,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
                   </div>
-                  <input type="text" name="telefono" class="form-control" placeholder="Telefono" value="{{ old('telefono') }}">
+                  <input type="text" name="telefono" class="form-control" placeholder="Telefono" value="{{ old('telefono') }}" required minlength="9" maxlength="9">
                 </div>
             </div>
             <div class="form-group">

@@ -36,7 +36,7 @@
       @endif
 
 
-       <form action="{{ url('clientes/'.$cliente->id) }}" method="post">
+       <form action="{{ url('clientes/'.$cliente->id.'/update') }}" method="post">
         @csrf
         @method('PUT')
           <div class="form-group">

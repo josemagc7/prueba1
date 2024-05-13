@@ -2,7 +2,16 @@
 
 @section('content')
 
+    <style>
+        .datepicker table tr td.disabled {
+            color: red;
 
+        }
+
+        .datepicker table tr td:not(.disabled) {
+            color: green;
+        }
+    </style>
 
     <div class="card shadow">
 
@@ -28,11 +37,11 @@
 
                 <div class="card-body" id="info">
                     @if (session('mensaje'))
-                    <div class="card-body" id="ocultar">
-                        <ul>
-                            <li style="color: green">{{ session('mensaje') }}</li>
-                        </ul>
-                    </div>
+                        <div class="card-body" id="ocultar">
+                            <ul>
+                                <li style="color: green">{{ session('mensaje') }}</li>
+                            </ul>
+                        </div>
                     @endif
                     <!-- MOSTRAMOS ERRORES PROCEDENTE DEL SERVER -->
                     @if ($errors->any())
@@ -53,7 +62,7 @@
                             <option value="" selected disabled>Selecione un tratamiento</option>
                             @foreach ($tratamientos as $tratamiento)
                                 <option value="{{ "{$tratamiento->id}-{$tratamiento->tiempo}" }}">
-                                    {{ "$tratamiento->tratamiento ($tratamiento->tiempo Minutos)"}}</option>
+                                    {{ "$tratamiento->tratamiento ($tratamiento->tiempo Minutos)" }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -64,8 +73,8 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for='fecha'>Fecha</label>
+                    <div class="form-group" id="datepiker">
+                        {{-- <label for='fecha'>Fecha</label>
                         <div class="input-group ">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
@@ -73,7 +82,7 @@
                             <input type="text" id="fecha" name="fecha_cita" class="form-control datepicker"
                                 value="{{ date('Y-m-d', strtotime(date(now()). ' +1 days')) }}" data-date-format="yyyy-mm-dd"
                                 data-date-start-date="+1d"  data-date-end-date="+21d" required>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="form-group" id="div_horas" style="display: none">
@@ -91,7 +100,8 @@
                     <div class="form-group">
                         <label for='descripcion'>Teléfono</label>
                         <input type="text" name="descripcion" id="descripcion" class="form-control"
-                            placeholder="Deje su telefono de contacto, Gracias" value="{{ old('descripcion') }}" maxlength="9" required>
+                            placeholder="Deje su telefono de contacto, Gracias" value="{{ old('descripcion') }}"
+                            maxlength="9" required>
                         </input>
                     </div>
 
@@ -108,9 +118,9 @@
 
 
                     <!--      <div class="form-group">
-                                        <label for='descripcion'>Descripcion</label>
-                                        <input type="" name=""> type="text" name="descripcion" class="form-control">
-                                      </div> -->
+                                            <label for='descripcion'>Descripcion</label>
+                                            <input type="" name=""> type="text" name="descripcion" class="form-control">
+                                          </div> -->
                     <button type="submit" class="btn btn-sm btn-primary">Coger cita</button>
                 </form>
             </div>

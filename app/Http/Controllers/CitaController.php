@@ -24,7 +24,7 @@ class CitaController extends Controller
             $rules=[
                 // 'tratamiento_id'=>'exists:tratamientos,id',
                 'peluquero_id'=>'exists:users,id',
-                // 'fecha_cita',
+                'telefono' => ['required', 'string', 'regex:/^[0-9]{9}$/'],
                 'hora_cita'=>'required',
             ];
 

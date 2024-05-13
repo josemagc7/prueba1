@@ -45,6 +45,39 @@ class UsersTableSeeder extends Seeder
             'telefono'=>'647277114',
             'rol'=>'cliente',
         ]);
+        \App\Models\User::create([
+            'name' => 'JAVI ADMIN',
+            'email' => 'fdellea600@g.educaand.es',
+            'email_verified_at' => now(),
+            'password' => bcrypt('prueba123'),
+            'remember_token' => '123456789',
+            'dni'=>'48190566T',
+            'direccion'=>'Aznalcollar',
+            'telefono'=>'647277114',
+            'rol'=>'admin',
+        ]);
+        \App\Models\User::create([
+            'name' => 'JAVI PELUQUERO',
+            'email' => 'fdellea601@g.educaand.es',
+            'email_verified_at' => now(),
+            'password' => bcrypt('prueba123'),
+            'remember_token' => '123456789',
+            'dni'=>'48190566T',
+            'direccion'=>'Aznalcollar',
+            'telefono'=>'647277114',
+            'rol'=>'peluquero',
+        ]);
+        \App\Models\User::create([
+            'name' => 'JAVI CLIENTE',
+            'email' => 'fdellea602@g.educaand.es',
+            'email_verified_at' => now(),
+            'password' => bcrypt('prueba123'),
+            'remember_token' => '123456789',
+            'dni'=>'48190566T',
+            'direccion'=>'Aznalcollar',
+            'telefono'=>'647277114',
+            'rol'=>'cliente',
+        ]);
         \App\Models\User::factory()->count(50)->create();
     }
 }

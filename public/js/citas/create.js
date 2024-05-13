@@ -1,5 +1,6 @@
 var iRadio;
 var div_horas = document.getElementById('div_horas');
+var datepiker = document.getElementById('datepiker');
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -26,14 +27,83 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     peluquero.addEventListener("change", (event) => {
-        div_horas.style.display = 'none';
+        // console.log(peluquero.value);
+        const url = `/tratamientos/getDiasDispo?id_peluquero=${peluquero.value}`;
+        $.getJSON(url, insertDatepiker);
+
         // cargarHorasDeshabilitadas();
-        cargarHoras();
+        // cargarHoras();
     });
 
-    $(fecha).datepicker({
+    // $(fecha).datepicker({
+    //     autoclose: true,
+    //     language: 'es'
+    // }).on('changeDate', function (e) {
+    //     $(this).datepicker('hide');
+    //     div_horas.style.display = 'none';
+    //     var info = document.getElementById('info');
+    //     if (peluquero.value == '') {
+    //         info.innerHTML = "<ul><li style='color:blue;'>Debes seleccionar un pelquero, GRACIAS</li></ul>";
+    //         // alert('Debes seleccionar un pelquero')
+    //     } else {
+    //         // cargarHorasDeshabilitadas();
+    //         cargarHoras();
+    //     }
+    // });
+
+
+});
+function insertDatepiker(dias) {
+ // Obtener los días disponibles
+const diasDisponibles = dias.map(dia => (dia.dia + 1) % 7);
+console.log(diasDisponibles);
+// Todos los días de la semana
+const todosLosDias = [0, 1, 2, 3, 4, 5, 6];
+
+// Filtrar los días deshabilitados
+const diasDesabilitados = todosLosDias.filter(dia => !diasDisponibles.includes(dia));
+
+// Convertir el array en una cadena separada por comas para usarlo en el atributo data-days-of-week-disabled
+const diasDesabilitadosString = diasDesabilitados.join(', ');
+
+console.log(diasDesabilitadosString);
+    // Convertir el array en una cadena separada por comas para usarlo en el atributo data-days-of-week-disabled
+    // const diasHabilitadosString = diashabilitados.join(', ');
+
+    const datePickerHTML = `
+        <label for='fecha'>Fecha</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+            </div>
+            <input type="text" id="fecha" name="fecha_cita" class="form-control datepicker"
+                value="${new Date().toISOString().slice(0, 10)}" data-date-format="yyyy-mm-dd"
+                data-date-start-date="+1d"  data-date-end-date="+14d" required>
+        </div>
+    `;
+    // const diashabilitados = dias.map(dia => dia.dia);
+    // console.log(diashabilitados);
+
+    // div_horas.style.display = 'none';
+    // datepiker.innerHTML = '';
+    // const datePickerHTML = `
+    //     <label for='fecha'>Fecha</label>
+    //     <div class="input-group ">
+    //         <div class="input-group-prepend">
+    //             <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+    //         </div>
+    //         <input type="text" id="fecha" name="fecha_cita" class="form-control datepicker"
+    //             value="AAAA-MM-DD" data-date-format="yyyy-mm-dd"
+    //             data-date-start-date="+1d"  data-date-end-date="+14d"
+    //             data-days-of-week-disabled="${diashabilitados}" required>
+    //     </div>
+    //    `;
+
+    datepiker.innerHTML = datePickerHTML;
+    $(datepiker.querySelector('.datepicker')).datepicker({
         autoclose: true,
-        language: 'es'
+        language: 'es',
+        daysOfWeekDisabled:diasDesabilitadosString
     }).on('changeDate', function (e) {
         $(this).datepicker('hide');
         div_horas.style.display = 'none';
@@ -46,10 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cargarHoras();
         }
     });
-
-
-});
-
+}
 function getPeluqueros(peluqueros) {
     let selectpeluquero = document.getElementById('peluquero');
     let htmla = '';
@@ -69,7 +136,7 @@ function cargarHoras() {
     tiempo = aux[1];
 
     info.innerHTML = "";
-    const url = `/horarios/horas?fecha=${fecha.value}&id_peluquero=${peluquero.value}&tiempo=${tiempo}`;
+    const url = `/horarios/horas?fecha=${datepiker.value}&id_peluquero=${peluquero.value}&tiempo=${tiempo}`;
     $.getJSON(url, mostarHoras);
 }
 

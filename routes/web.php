@@ -51,7 +51,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/clientes/create', [App\Http\Controllers\Admin\clienteController::class, 'create']);
     Route::get('/clientes/{cliente}/edit', [App\Http\Controllers\Admin\clienteController::class, 'edit']);
     Route::post('/clientes', [App\Http\Controllers\Admin\clienteController::class, 'add']);
-    Route::put('/clientes/{cliente}', [App\Http\Controllers\Admin\clienteController::class, 'update']);
+    Route::put('/clientes/{cliente}/update', [App\Http\Controllers\Admin\clienteController::class, 'update']);
     Route::put('/clientes/{cliente}', [App\Http\Controllers\Admin\clienteController::class, 'delete']);
 });
 
@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
 
     //json
     Route::get('/tratamientos/{tratamiento}/peluqueros',[App\Http\Controllers\Api\TratamientoController::class, 'peluqueros']);
+    Route::get('/tratamientos/getDiasDispo',[App\Http\Controllers\Api\TratamientoController::class, 'getDiasDispo']);
     Route::get('/horarios/horas',[App\Http\Controllers\Api\HorariosController::class, 'horas']);
     // Route::get('/horarios/horasDeshabilitadas',[App\Http\Controllers\Api\HorariosController::class, 'horasDeshabilitadas']);
 

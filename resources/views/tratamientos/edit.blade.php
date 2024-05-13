@@ -54,7 +54,7 @@
               <option value =''disabled selected>Seleccione una opción</option>
               <option value ='15'>15 Minutos</option>
               <option value ='30'>30 Minutos</option>
-              <option value ='45'>30 Minutos</option>
+              <option value ='45'>45 Minutos</option>
               <option value ='60'>1 Hora</option>
               <option value ='75'>1 Hora y 15 Minutos</option>
               <option value ='90'>1 Hora y 30 Minutos</option>
