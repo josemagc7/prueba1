@@ -3,13 +3,11 @@ var div_horas = document.getElementById('div_horas');
 var datepiker = document.getElementById('datepiker');
 
 document.addEventListener("DOMContentLoaded", () => {
-
-
-
     let tratamieto = document.getElementById('tratamiento');
     let peluquero = document.getElementById('peluquero');
     let fecha = document.getElementById('fecha');
     var tiempo
+
     tratamieto.addEventListener("change", (event) => {
         div_horas.style.display = 'none';
         let horas = document.getElementById('horas');
@@ -17,58 +15,29 @@ document.addEventListener("DOMContentLoaded", () => {
         let info = document.getElementById('info');
         info.innerHTML = "";
         const tratamiento = tratamieto.value;
-        const aux = tratamiento.split('-') // [ 'free', 'code', 'camp' ]
+        const aux = tratamiento.split('-')
         const tratamientoId = aux[0]
         tiempo = aux[1];
-        // debugger;
         const url = `/tratamientos/${tratamientoId}/peluqueros`;
         $.getJSON(url, getPeluqueros);
 
     });
 
     peluquero.addEventListener("change", (event) => {
-        // console.log(peluquero.value);
         const url = `/tratamientos/getDiasDispo?id_peluquero=${peluquero.value}`;
         $.getJSON(url, insertDatepiker);
 
-        // cargarHorasDeshabilitadas();
-        // cargarHoras();
     });
-
-    // $(fecha).datepicker({
-    //     autoclose: true,
-    //     language: 'es'
-    // }).on('changeDate', function (e) {
-    //     $(this).datepicker('hide');
-    //     div_horas.style.display = 'none';
-    //     var info = document.getElementById('info');
-    //     if (peluquero.value == '') {
-    //         info.innerHTML = "<ul><li style='color:blue;'>Debes seleccionar un pelquero, GRACIAS</li></ul>";
-    //         // alert('Debes seleccionar un pelquero')
-    //     } else {
-    //         // cargarHorasDeshabilitadas();
-    //         cargarHoras();
-    //     }
-    // });
-
 
 });
 function insertDatepiker(dias) {
- // Obtener los días disponibles
-const diasDisponibles = dias.map(dia => (dia.dia + 1) % 7);
-console.log(diasDisponibles);
-// Todos los días de la semana
-const todosLosDias = [0, 1, 2, 3, 4, 5, 6];
+    div_horas.style.display = 'none';
+    const diasDisponibles = dias.map(dia => (dia.dia + 1) % 7);
+    const todosLosDias = [0, 1, 2, 3, 4, 5, 6];
+    const diasDesabilitados = todosLosDias.filter(dia => !diasDisponibles.includes(dia));
+    const diasDesabilitadosString = diasDesabilitados.join(', ');
 
-// Filtrar los días deshabilitados
-const diasDesabilitados = todosLosDias.filter(dia => !diasDisponibles.includes(dia));
-
-// Convertir el array en una cadena separada por comas para usarlo en el atributo data-days-of-week-disabled
-const diasDesabilitadosString = diasDesabilitados.join(', ');
-
-console.log(diasDesabilitadosString);
-    // Convertir el array en una cadena separada por comas para usarlo en el atributo data-days-of-week-disabled
-    // const diasHabilitadosString = diashabilitados.join(', ');
+    console.log(diasDisponibles.length == 0);
 
     const datePickerHTML = `
         <label for='fecha'>Fecha</label>
@@ -81,42 +50,24 @@ console.log(diasDesabilitadosString);
                 data-date-start-date="+1d"  data-date-end-date="+14d" required>
         </div>
     `;
-    // const diashabilitados = dias.map(dia => dia.dia);
-    // console.log(diashabilitados);
-
-    // div_horas.style.display = 'none';
-    // datepiker.innerHTML = '';
-    // const datePickerHTML = `
-    //     <label for='fecha'>Fecha</label>
-    //     <div class="input-group ">
-    //         <div class="input-group-prepend">
-    //             <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-    //         </div>
-    //         <input type="text" id="fecha" name="fecha_cita" class="form-control datepicker"
-    //             value="AAAA-MM-DD" data-date-format="yyyy-mm-dd"
-    //             data-date-start-date="+1d"  data-date-end-date="+14d"
-    //             data-days-of-week-disabled="${diashabilitados}" required>
-    //     </div>
-    //    `;
 
     datepiker.innerHTML = datePickerHTML;
     $(datepiker.querySelector('.datepicker')).datepicker({
         autoclose: true,
         language: 'es',
-        daysOfWeekDisabled:diasDesabilitadosString
+        daysOfWeekDisabled: diasDesabilitadosString
     }).on('changeDate', function (e) {
         $(this).datepicker('hide');
         div_horas.style.display = 'none';
         var info = document.getElementById('info');
         if (peluquero.value == '') {
             info.innerHTML = "<ul><li style='color:blue;'>Debes seleccionar un pelquero, GRACIAS</li></ul>";
-            // alert('Debes seleccionar un pelquero')
         } else {
-            // cargarHorasDeshabilitadas();
             cargarHoras();
         }
     });
 }
+
 function getPeluqueros(peluqueros) {
     let selectpeluquero = document.getElementById('peluquero');
     let htmla = '';
@@ -141,15 +92,6 @@ function cargarHoras() {
     const url = `/horarios/horas?fecha=${fecha.value}&id_peluquero=${peluquero.value}&tiempo=${tiempo}`;
     $.getJSON(url, mostarHoras);
 }
-
-// function cargarHorasDeshabilitadas()
-// {
-//         info.innerHTML = "";
-//         const url = `/horarios/horasDeshabilitadas?fecha=${fecha.value}&id_peluquero=${peluquero.value}`;
-//         let a = $.getJSON(url);
-//         console.log(a);
-// }
-
 
 function mostarHoras(data) {
 
