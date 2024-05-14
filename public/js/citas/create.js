@@ -130,13 +130,15 @@ function getPeluqueros(peluqueros) {
 };
 
 function cargarHoras() {
+    let fecha = document.getElementById('fecha');
     let tratamieto = document.getElementById('tratamiento');
     let tratamiento = tratamieto.value;
     let aux = tratamiento.split('-')
     tiempo = aux[1];
 
     info.innerHTML = "";
-    const url = `/horarios/horas?fecha=${datepiker.value}&id_peluquero=${peluquero.value}&tiempo=${tiempo}`;
+
+    const url = `/horarios/horas?fecha=${fecha.value}&id_peluquero=${peluquero.value}&tiempo=${tiempo}`;
     $.getJSON(url, mostarHoras);
 }
 
