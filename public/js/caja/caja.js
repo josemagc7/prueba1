@@ -72,7 +72,7 @@ function citasPeluquero(datos) {
         tablaHTML += '<th scope="col">Precio</th>';
         tablaHTML += '<th scope="col">Tiempo</th>';
         tablaHTML += '<th scope="col">Descripción</th>';
-        tablaHTML += '<th scope="col">Total</th>';
+        tablaHTML += '<th scope="col">Total Diario</th>';
         tablaHTML += '</tr>';
         tablaHTML += '</thead>';
         tablaHTML += '<tbody id="tbody_tabla">';

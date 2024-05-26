@@ -47,7 +47,7 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Tiempo</th>
                         <th scope="col">Telefono</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Total Diario</th>
                     </tr>
                 </thead>
                 <tbody id="tbody_tabla">
