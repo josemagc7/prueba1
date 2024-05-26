@@ -179,6 +179,7 @@ class peluqueroController extends Controller
             $data[$key]['tratamiento']=$tratamientos[0]['tratamiento'];
             $data[$key]['cliente']=$users[0]['name'];
             $data[$key]['descripcion']=$value['descripcion'];
+            $data[$key]['total']="";
             $cajaTotal+=(float)str_replace(',', '.', $tratamientos[0]['precio']);
             // $data[]['id']=$value['id'];
         }
@@ -189,10 +190,11 @@ class peluqueroController extends Controller
             "fecha_cita" => "",
             "hora_cita" => "",
             "precio" => "",
-            "tiempo" => "Caja Total",
+            "tiempo" => "",
             "tratamiento" => "",
             "cliente" => "",
-            "descripcion" =>number_format($cajaTotal, 2, ',', '')." €"
+            "descripcion" =>"",
+            "total" => number_format($cajaTotal, 2, ',', '')." €"
         ];
 
 

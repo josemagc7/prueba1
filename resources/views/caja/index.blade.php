@@ -47,7 +47,7 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Tiempo</th>
                         <th scope="col">Telefono</th>
-                        {{-- <th scope="col">Asistencia</th> --}}
+                        <th scope="col">Total</th>
                     </tr>
                 </thead>
                 <tbody id="tbody_tabla">
@@ -78,7 +78,7 @@
                             </td>
                             <td>
                                 {{ $cita['tiempo'] }}
-                                @if (strlen($cita['tiempo']) < 8)
+                                @if ($cita['tiempo'] != "")
                                 Minutos
                                 @endif
                             </td>
@@ -86,14 +86,11 @@
                                 {{ $cita['descripcion'] }}
                             </td>
 
-                            {{-- <td>
-                                @if ($cita['asistencia'] == 0)
-                                    <a onclick="citaCompletada({{ $cita['id'] }})" class="btn btn-sm btn-success" style="color: white">OK</a>
-                                @else
-                                    <button class="btn btn-sm btn-success" disabled>OK</button>
-                                @endif
 
-                            </td> --}}
+                                <td>
+                                    {{ $cita['total'] }}
+                                </td>
+
                         </tr>
                     @endforeach
 
