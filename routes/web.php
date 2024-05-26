@@ -53,6 +53,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/clientes', [App\Http\Controllers\Admin\clienteController::class, 'add']);
     Route::put('/clientes/{cliente}/update', [App\Http\Controllers\Admin\clienteController::class, 'update']);
     Route::put('/clientes/{cliente}', [App\Http\Controllers\Admin\clienteController::class, 'delete']);
+
+    Route::get('/cajaAdmin', [App\Http\Controllers\Admin\peluqueroController::class, 'cajaTotal']);
+
+
 });
 
 Route::middleware(['auth', 'peluquero'])->group(function () {

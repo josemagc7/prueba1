@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
+use App\Models\Cita;
+
 use App\Models\tratamiento;
 use App\Http\Controllers\Controller;
 
@@ -148,5 +150,66 @@ class peluqueroController extends Controller
         // $mensaje='El/La peluquero/a '.$inf.' ha sido eliminado/a correctamente.';
         return redirect('/peluqueros')->with(compact('mensaje'));
 
+    }
+
+    public function cajaTotal()
+    {
+
+        if (isset($_REQUEST['fecha'])) {
+            $fecha=$_REQUEST['fecha'];
+        }else{
+            $fecha=date('Y-m-d');
+        }
+        $data=[];
+        $citas=cita::where('asistencia',1)->where('fecha_cita',$fecha)->get();
+
+        // if ($citas->isEmpty()) {
+        //    dd('hola');
+        // } else {
+        $cajaTotal=0;
+        foreach ($citas as $key => $value) {
+            $tratamientos=tratamiento::where('id',$value['tratamiento_id'])->get();
+            $users=User::where('id',$value['cliente_id'])->get();
+            $data[$key]['id']=$value['id'];
+            $data[$key]['asistencia']=$value['asistencia'];
+            $data[$key]['fecha_cita']=$value['fecha_cita'];
+            $data[$key]['hora_cita']=$value['hora_cita'];
+            $data[$key]['precio']=$tratamientos[0]['precio'];
+            $data[$key]['tiempo']=$tratamientos[0]['tiempo'];
+            $data[$key]['tratamiento']=$tratamientos[0]['tratamiento'];
+            $data[$key]['cliente']=$users[0]['name'];
+            $data[$key]['descripcion']=$value['descripcion'];
+            $cajaTotal+=(float)str_replace(',', '.', $tratamientos[0]['precio']);
+            // $data[]['id']=$value['id'];
+        }
+
+        $dataAux=[
+            "id" => "",
+            "asistencia" => "",
+            "fecha_cita" => "",
+            "hora_cita" => "",
+            "precio" => "",
+            "tiempo" => "Caja Total",
+            "tratamiento" => "",
+            "cliente" => "",
+            "descripcion" =>number_format($cajaTotal, 2, ',', '')." €"
+        ];
+
+
+
+        usort($data, function($a, $b) {
+            return strtotime($b['fecha_cita']) - strtotime($a['fecha_cita']);
+        });
+        $data[]=$dataAux;
+    //  dd($data);
+        if (!$_REQUEST) {
+            return view('caja.index',compact('data'),compact('fecha'));
+        }else{
+            $datos = [
+                'data' => $data,
+                'fecha' => $fecha
+            ];
+            return $datos;
+        }
     }
 }

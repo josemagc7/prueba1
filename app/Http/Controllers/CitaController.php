@@ -24,12 +24,13 @@ class CitaController extends Controller
             $rules=[
                 // 'tratamiento_id'=>'exists:tratamientos,id',
                 'peluquero_id'=>'exists:users,id',
-                'telefono' => ['required', 'string', 'regex:/^[0-9]{9}$/'],
+                'descripcion' => ['required', 'regex:/^[0-9]{9}$/'],
                 'hora_cita'=>'required',
             ];
 
             $messages=[
-                'hora_cita.required' => 'Seleccione una hora valida para su cita.'
+                'hora_cita.required' => 'Seleccione una hora valida para su cita.',
+                'descripcion.regex'=>'El formato de su número de teléfono no es válido.'
             ];
             $this->validate($request,$rules,$messages);
 

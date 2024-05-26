@@ -62,7 +62,7 @@
                             <option value="" selected disabled>Selecione un tratamiento</option>
                             @foreach ($tratamientos as $tratamiento)
                                 <option value="{{ "{$tratamiento->id}-{$tratamiento->tiempo}" }}">
-                                    {{ "$tratamiento->tratamiento ($tratamiento->tiempo Minutos)" }}</option>
+                                    {{ "$tratamiento->tratamiento ($tratamiento->tiempo Minutos) ($tratamiento->precio €)" }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -101,7 +101,7 @@
                         <label for='descripcion'>Teléfono</label>
                         <input type="text" name="descripcion" id="descripcion" class="form-control"
                             placeholder="Deje su telefono de contacto, Gracias" value="{{ old('descripcion') }}"
-                            maxlength="9" required>
+                            maxlength="9" minlength="9" required>
                         </input>
                     </div>
 

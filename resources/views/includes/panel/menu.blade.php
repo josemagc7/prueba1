@@ -29,7 +29,7 @@
     </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('cajaAdmin') }}" @disabled(true)>
+        <a class="nav-link" href="{{ url('cajaAdmin') }}">
             <i class="ni ni-money-coins text-success"></i> Caja
         </a>
     </li>
@@ -44,11 +44,11 @@
             <i class="ni ni-bullet-list-67 text-orange"></i>Planificación de citas
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('clientes') }}" @disabled(true)>
-            <i class="ni ni-money-coins text-success"></i>Caja
+    {{-- <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="ni ni-like-2 text-success"></i>Tratamientos finalizados
         </a>
-    </li>
+    </li> --}}
 @elseif (auth()->user()->rol == 'cliente')
 <li class="nav-item">
     <a class="nav-link" href="{{ url('citas/create')}}">
