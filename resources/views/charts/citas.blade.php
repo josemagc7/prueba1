@@ -109,18 +109,21 @@
                     label: 'Citas Totales',
                     data: datos.total,
                     borderColor: 'blue',
+                    borderWidth: 2,
                     fill: false
                 },
                 {
                     label: 'Citas Completadas',
                     data: datos.completadas,
                     borderColor: 'green',
+                    borderWidth: 5,
                     fill: false
                 },
                 {
                     label: 'Citas Canceladas',
                     data: datos.canceladas,
                     borderColor: 'red',
+                    borderWidth: 5,
                     fill: false
                 }
             ]
