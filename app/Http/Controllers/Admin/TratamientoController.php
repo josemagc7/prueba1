@@ -34,7 +34,7 @@ class TratamientoController extends Controller
         $rules=
         [
             'tratamiento' => 'required|min:4',
-            'precio' => 'required',
+            'precio' => 'required|regex:/^\d{1,2}\.\d{2}$/',
             'tiempo' => 'required',
             'descripcion' => 'required',
         ];
@@ -67,7 +67,7 @@ class TratamientoController extends Controller
         $rules=
         [
             'tratamiento' => 'required|min:4',
-            'precio' => 'required',
+            'precio' => 'required|regex:/^\d{1,2}\.\d{2}$/',
             'tiempo' => 'required',
             'descripcion' => 'required',
         ];

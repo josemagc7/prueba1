@@ -83,12 +83,12 @@
 <!-- Navigation -->
 <ul class="navbar-nav mb-md-3">
   <li class="nav-item">
-    <a class="nav-link" href="#" @disabled(true)>
+    <a class="nav-link" href="{{url('charts/citas')}}">
       <i class="ni ni-sound-wave text-yellow"></i>Freceuncias de citas
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#" @disabled(true)>
+    <a class="nav-link" href="{{url('charts/topPeluquero')}}">
       <i class="ni ni-spaceship text-orange"></i>Peluqeros/as más activos
     </a>
   </li>

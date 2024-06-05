@@ -54,9 +54,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/clientes/{cliente}/update', [App\Http\Controllers\Admin\clienteController::class, 'update']);
     Route::put('/clientes/{cliente}', [App\Http\Controllers\Admin\clienteController::class, 'delete']);
 
+
     Route::get('/cajaAdmin', [App\Http\Controllers\Admin\peluqueroController::class, 'cajaTotal']);
 
+    Route::get('/charts/citas', [App\Http\Controllers\Admin\ChartsController::class, 'citas']);
+    Route::get('/chartsCitasFecha', [App\Http\Controllers\Admin\ChartsController::class, 'getDataCitas']);
 
+    Route::get('/charts/topPeluquero', [App\Http\Controllers\Admin\ChartsController::class, 'topPeluquero']);
+    Route::get('/chartsCitasFecha', [App\Http\Controllers\Admin\ChartsController::class, 'getDataTop']);
+    // charts/topPeluquero
 });
 
 Route::middleware(['auth', 'peluquero'])->group(function () {
