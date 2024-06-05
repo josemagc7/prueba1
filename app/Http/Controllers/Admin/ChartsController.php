@@ -21,7 +21,6 @@ class ChartsController extends Controller
 
     public function getDataCitas(){
 
-
         switch ($_REQUEST['frecuencia']) {
             case 'diaria':
                 $fechaInicio = $_REQUEST['fechaInicio'];

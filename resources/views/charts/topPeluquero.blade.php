@@ -80,7 +80,7 @@
                 if (fechaInicio && fechaFin) {
                     // mostrarGrafica()
                     const url =
-                        `/chartsCitasFecha?frecuencia=${frecuencia}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
+                        `/chartsTopFecha?frecuencia=${frecuencia}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
                     $.getJSON(url, mostrarGrafica);
                 } else {
                     console.log('Por favor, seleccione ambas fechas.');

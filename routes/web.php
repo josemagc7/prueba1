@@ -61,7 +61,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/chartsCitasFecha', [App\Http\Controllers\Admin\ChartsController::class, 'getDataCitas']);
 
     Route::get('/charts/topPeluquero', [App\Http\Controllers\Admin\ChartsController::class, 'topPeluquero']);
-    Route::get('/chartsCitasFecha', [App\Http\Controllers\Admin\ChartsController::class, 'getDataTop']);
+    Route::get('/chartsTopFecha', [App\Http\Controllers\Admin\ChartsController::class, 'getDataTop']);
     // charts/topPeluquero
 });
 
