@@ -81,7 +81,7 @@ function citasPeluquero(datos) {
         table_resp.innerHTML = tablaHTML;
 
     } else {
-        let fechahoy = new Date('2024-5-7');
+        let fechahoy = new Date();
         let año = fechahoy.getFullYear();
         let mes = ('0' + (fechahoy.getMonth() + 1)).slice(-2);
         let dia = ('0' + fechahoy.getDate()).slice(-2);
@@ -94,7 +94,7 @@ function citasPeluquero(datos) {
             console.log(fechaFormateada);
 
             if (cita.fecha_cita == fechaFormateada && cita.asistencia == 0) {
-                aux = '<a onclick="citaCompletada(' + cita.id + ')" class="btn btn-sm btn-success" style="color:white;" disabled>OK</a>'
+                aux = '<a onclick="citaCompletada(' + cita.id + ')" class="btn btn-sm btn-success" style="color:white;">OK</a>'
             }
 
             tablaHTML += '<tr>';
