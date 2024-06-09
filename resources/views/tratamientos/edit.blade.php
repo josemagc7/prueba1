@@ -74,7 +74,7 @@
             <label for='descripcion'>Descripcion</label>
             <input type="" name=""> type="text" name="descripcion" class="form-control">
           </div> -->
-         <button type="submit" class="btn btn-sm btn-primary">Editar tratamiento</button>
+         <button type="submit" class="btn btn-sm btn-primary">Guardar tratamiento</button>
        </form>
     </div>
   </div>

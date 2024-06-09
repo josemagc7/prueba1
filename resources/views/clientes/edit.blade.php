@@ -71,7 +71,7 @@
 
 
 
-         <button type="submit" class="btn btn-sm btn-primary">Editar cliente</button>
+         <button type="submit" class="btn btn-sm btn-primary">Guardar cliente</button>
        </form>
     </div>
   </div>

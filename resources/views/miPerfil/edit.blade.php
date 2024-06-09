@@ -71,7 +71,7 @@
 
 
 
-         <button type="submit" class="btn btn-sm btn-primary">Editar Perfil</button>
+         <button type="submit" class="btn btn-sm btn-primary">Guardar Perfil</button>
        </form>
     </div>
   </div>
