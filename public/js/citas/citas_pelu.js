@@ -38,10 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function citaCompletada(id_cita) {
-
-
+    let confirmacion = confirm("¿Cita completada?");
+    if (confirmacion) {
     const url = `/citaCompletada?id_cita=${id_cita}`;
     $.getJSON(url, citasPeluquero);
+    }
 }
 function citasPeluquero(datos) {
     let fecha = document.getElementById('fecha');
