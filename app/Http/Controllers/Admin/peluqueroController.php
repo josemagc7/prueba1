@@ -96,16 +96,18 @@ class peluqueroController extends Controller
             'direccion'=>'nullable|min:4',
             'telefono'=>'nullable|min:9',
         ];
+        $pass=$request->input('password');
+        if ($pass) {
+           $data['password'] = bcrypt($pass);
+           $rules['password'] = 'min:8';
+        }
         $this->validate($request,$rules);
 
         $aux=User::where('rol' , 'peluquero')->where('id' , $id)->get();
         $user=$aux[0];
         $data=$request->only('name','email','dni','direccion','telefono');
 
-        $pass=$request->input('password');
-        if ($pass) {
-           $data['password'] = bcrypt($pass);
-        }
+
 
 
 

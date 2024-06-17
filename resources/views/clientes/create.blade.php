@@ -58,7 +58,7 @@
           <div class="form-group">
             <label for='telefono'>Telf.
             </label>
-            <input type="text" name="telefono" class="form-control" placeholder="Ej: 696545884" value="{{ old('telefono') }}">
+            <input type="text" name="telefono" class="form-control" placeholder="Ej: 696545884" value="{{ old('telefono') }}" minlength="9" maxlength="9">
           </div>
           <div class="form-group">
             <label for='password'>Contraseña
